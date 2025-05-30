@@ -9,8 +9,14 @@ import android.view.View;
 import android.widget.*;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,19 +26,23 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinnerKategori;
 
     ArrayList<String> kayitlar = new ArrayList<>();
-
     ArrayList<String> kategoriler = new ArrayList<>();
     ArrayAdapter<String> kategoriAdapter;
 
     double toplamGelir = 0;
     double toplamGider = 0;
-    int seciliPozisyon = -1;
+
+    FirebaseFirestore db; // Firestore nesnesi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FirebaseApp.initializeApp(this); // Firebase başlat
+        db = FirebaseFirestore.getInstance(); // Firestore bağlantısı
+
+        // View bağlantıları
         editTutar = findViewById(R.id.editTutar);
         editKategori = findViewById(R.id.editKategori);
         editAra = findViewById(R.id.editAra);
@@ -41,11 +51,10 @@ public class MainActivity extends AppCompatActivity {
         btnGider = findViewById(R.id.btnGider);
         btnTarihSec = findViewById(R.id.btnTarihSec);
         btnAnaliz = findViewById(R.id.btnAnaliz);
-
-
         textBakiye = findViewById(R.id.textBakiye);
         spinnerKategori = findViewById(R.id.spinnerKategori);
 
+        // Kategoriler
         kategoriler.add("Tümü");
         kategoriler.add("Gıda");
         kategoriler.add("Ulaşım");
@@ -92,9 +101,21 @@ public class MainActivity extends AppCompatActivity {
         if (!tutarStr.isEmpty()) {
             double tutar = Double.parseDouble(tutarStr);
             toplamGelir += tutar;
-            kayitlar.add(tarih + " [Gelir] +" + tutar + " TL, " + kategori);
+            String kayit = tarih + " [Gelir] +" + tutar + " TL, " + kategori;
+            kayitlar.add(kayit);
             guncelleBakiye();
-            Toast.makeText(this, "Gelir işlendi", Toast.LENGTH_SHORT).show();
+
+            // Firebase'e gönder
+            Map<String, Object> veri = new HashMap<>();
+            veri.put("tarih", tarih);
+            veri.put("tip", "Gelir");
+            veri.put("tutar", tutar);
+            veri.put("kategori", kategori);
+
+            db.collection("kayitlar")
+                    .add(veri)
+                    .addOnSuccessListener(documentReference -> Toast.makeText(this, "Gelir Firebase'e kaydedildi", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e -> Toast.makeText(this, "Firebase'e kaydedilemedi", Toast.LENGTH_SHORT).show());
         }
     }
 
@@ -106,9 +127,21 @@ public class MainActivity extends AppCompatActivity {
         if (!tutarStr.isEmpty()) {
             double tutar = Double.parseDouble(tutarStr);
             toplamGider += tutar;
-            kayitlar.add(tarih + " [Gider] -" + tutar + " TL, " + kategori);
+            String kayit = tarih + " [Gider] -" + tutar + " TL, " + kategori;
+            kayitlar.add(kayit);
             guncelleBakiye();
-            Toast.makeText(this, "Gider işlendi", Toast.LENGTH_SHORT).show();
+
+            // Firebase'e gönder
+            Map<String, Object> veri = new HashMap<>();
+            veri.put("tarih", tarih);
+            veri.put("tip", "Gider");
+            veri.put("tutar", tutar);
+            veri.put("kategori", kategori);
+
+            db.collection("kayitlar")
+                    .add(veri)
+                    .addOnSuccessListener(documentReference -> Toast.makeText(this, "Gider Firebase'e kaydedildi", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e -> Toast.makeText(this, "Firebase'e kaydedilemedi", Toast.LENGTH_SHORT).show());
         }
     }
 
@@ -118,10 +151,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void filtrele() {
-        // Şimdilik boş, çünkü listeler artık gösterilmiyor.
+        // Henüz listeleme yapılmadığı için boş
     }
 
-    // Kısa tanımlı TextWatcher:
     class SimpleWatcher implements TextWatcher {
         Runnable onChange;
         SimpleWatcher(Runnable r) { this.onChange = r; }

@@ -2,30 +2,39 @@ package com.example.butcetakip;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 
 public class AnalizActivity extends AppCompatActivity {
 
     TextView textAnaliz;
     ListView listAnaliz;
+    Button btnGeriDon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analiz);
 
+        // View'lar
         textAnaliz = findViewById(R.id.textAnaliz);
         listAnaliz = findViewById(R.id.listAnaliz);
+        btnGeriDon = findViewById(R.id.btnGeriDon);
 
+        // Geri Dön Butonu
+        btnGeriDon.setOnClickListener(v -> finish());
+
+        // Gelen verileri işle
         ArrayList<String> kayitlar = getIntent().getStringArrayListExtra("kayitlar");
         if (kayitlar == null) kayitlar = new ArrayList<>();
 
         double toplamGelir = 0;
         double toplamGider = 0;
-
         ArrayList<String> duzenliKayitlar = new ArrayList<>();
 
         for (String satir : kayitlar) {
@@ -39,7 +48,7 @@ public class AnalizActivity extends AppCompatActivity {
             duzenliKayitlar.add("• " + satir);
         }
 
-        textAnaliz.setText("\uD83D\uDCCA İstatistik\n\n" +
+        textAnaliz.setText("📊 İstatistik\n\n" +
                 "Toplam Gelir: " + toplamGelir + " TL\n" +
                 "Toplam Gider: " + toplamGider + " TL\n" +
                 "Bakiye: " + (toplamGelir - toplamGider) + " TL");

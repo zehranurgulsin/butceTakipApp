@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1097967483847",
+    "project_id": "butcetakip-c1ac9",
+    "storage_bucket": "butcetakip-c1ac9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097967483847:android:c1758c9eaa49734e9e77e2",
+        "android_client_info": {
+          "package_name": "com.example.butcetakip"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBanzjzEszbLrLbJIx2gAXTXkkNMLezCxc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,36 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F5F5F5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:padding="16dp">
 
-    <!-- İstatistik Başlığı -->
+    <!-- 🔵 Üst Başlık -->
     <TextView
         android:id="@+id/textAnaliz"
-        android:text="📊 İstatistik Bilgileri"
-        android:textSize="18sp"
+        android:text="📊 Bütçe Analizi"
+        android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="#000000"
-        android:gravity="center"
-        android:layout_width="wrap_content"
+        android:textColor="#3F51B5"
+        android:background="#FFFFFF"
+        android:padding="16dp"
+        android:elevation="4dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/listAnaliz"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#FFFFFF"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="8dp" />
 
-    <!-- Kayıt Listesi -->
+    <!-- 📋 Kayıtlar Listesi -->
     <ListView
         android:id="@+id/listAnaliz"
         android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:divider="@android:color/darker_gray"
+        android:layout_height="200dp"
+        android:divider="#CCCCCC"
         android:dividerHeight="1dp"
+        android:background="#FFFFFF"
+        android:padding="5dp"
+        android:elevation="2dp"
         app:layout_constraintTop_toBottomOf="@id/textAnaliz"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/btnGeriDon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🔙 Ana Sayfaya Dön"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/listAnaliz"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
