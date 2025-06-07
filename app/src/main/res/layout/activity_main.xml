@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#F6F6F6"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="4dp"
+        android:layout_margin="16dp"
+        android:clipToPadding="false"
+        android:clipChildren="false">
+
+
+        <TextView
+            android:text="🔍 Filtreleme"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#333"
+            android:layout_marginBottom="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/editAra"
+            android:hint="🔎 Ara (kategori, miktar...)"
+            android:minHeight="50dp"
+            android:padding="14dp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/editTarih"
+            android:hint="📅 Tarih (örnek: 2025-05)"
+            android:minHeight="50dp"
+            android:padding="14dp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" />
+
+        <Spinner
+            android:id="@+id/spinnerKategori"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_marginBottom="20dp" />
+
+
+        <TextView
+            android:text="💰 Yeni Kayıt"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#333"
+            android:layout_marginBottom="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/editTutar"
+            android:hint="💵 Tutar girin"
+            android:inputType="numberDecimal"
+            android:minHeight="50dp"
+            android:padding="14dp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/editKategori"
+            android:hint="🏷 Kategori girin (Gıda, Ulaşım...)"
+            android:minHeight="50dp"
+            android:padding="14dp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnGelir"
+                android:text="➕ Gelir"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:backgroundTint="#4CAF50"
+                android:textColor="#FFFFFF"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="48dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btnGider"
+                android:text="➖ Gider"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:backgroundTint="#F44336"
+                android:textColor="#FFFFFF"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/textBakiye"
+            android:text="Toplam Bakiye: 0 TL"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#222"
+            android:paddingTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp" />
+
+        <Button
+            android:id="@+id/btnTarihSec"
+            android:text="📆 Tarih Seç"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnAnaliz"
+            android:text="📊 İstatistik ve Kayıtlar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#3F51B5"
+            android:textColor="#FFF"
+            android:minHeight="48dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+
+    </LinearLayout>
+</ScrollView>
